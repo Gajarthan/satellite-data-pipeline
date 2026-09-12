@@ -1,0 +1,17 @@
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Northern Sri Lanka Demo AOI",
+    "note": "Replace this demo polygon with the actual customer/site AOI."
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[
+      [79.90, 9.45],
+      [80.30, 9.45],
+      [80.30, 9.85],
+      [79.90, 9.85],
+      [79.90, 9.45]
+    ]]
+  }
+}

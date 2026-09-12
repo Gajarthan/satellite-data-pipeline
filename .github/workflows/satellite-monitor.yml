@@ -1,0 +1,72 @@
+name: Daily Satellite Data Pipeline
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "10 6 * * *"
+      timezone: "Asia/Colombo"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: satellite-monitor
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    name: Discover Sentinel-2 scenes
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest -q
+
+      - name: Query Copernicus STAC catalogue
+        env:
+          LOOKBACK_DAYS: "5"
+          MAX_CLOUD_COVER: "25"
+          RESULT_LIMIT: "20"
+        run: python scripts/fetch_latest.py
+
+      - name: Show run summary
+        run: cat data/run_summary.md
+
+      - name: Upload run outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: satellite-catalogue-${{ github.run_number }}
+          path: |
+            data/latest_items.json
+            data/new_items.json
+            data/state.json
+            data/run_summary.md
+          retention-days: 30
+
+      - name: Commit updated catalogue state
+        shell: bash
+        run: |
+          git config user.name "satellite-pipeline[bot]"
+          git config user.email "satellite-pipeline[bot]@users.noreply.github.com"
+          git add data/
+
+          if git diff --cached --quiet; then
+            echo "No catalogue state changes to commit."
+            exit 0
+          fi
+
+          git commit -m "data: update satellite catalogue $(date -u +'%Y-%m-%d')"
+          git push
