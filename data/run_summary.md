@@ -1,6 +1,6 @@
 # Daily Satellite Catalogue Run
 
-- Run time (UTC): `2026-09-16T05:13:12Z`
+- Run time (UTC): `2026-09-17T05:20:21Z`
 - Collection: `sentinel-2-l2a`
 - Lookback: `5` days
 - Cloud cover threshold: `< 25.0%`
