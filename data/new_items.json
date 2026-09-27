@@ -1,5 +1,38 @@
 {
-  "run_at": "2026-09-26T05:26:09Z",
-  "count": 0,
-  "items": []
+  "run_at": "2026-09-27T05:42:20Z",
+  "count": 2,
+  "items": [
+    {
+      "id": "S2B_MSIL2A_20260926T045659_N0513_R119_T44PMR_20260926T085532",
+      "collection": "sentinel-2-l2a",
+      "datetime": "2026-09-26T04:56:59.024000Z",
+      "cloud_cover": 1.62,
+      "platform": "sentinel-2b",
+      "constellation": "sentinel-2",
+      "mgrs_tile": null,
+      "bbox": [
+        80.08736412982451,
+        8.957163490003405,
+        81.0890415103639,
+        9.951396178480556
+      ],
+      "self_href": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-2-l2a/items/S2B_MSIL2A_20260926T045659_N0513_R119_T44PMR_20260926T085532"
+    },
+    {
+      "id": "S2B_MSIL2A_20260926T045659_N0513_R119_T44PLR_20260926T085532",
+      "collection": "sentinel-2-l2a",
+      "datetime": "2026-09-26T04:56:59.024000Z",
+      "cloud_cover": 5.24,
+      "platform": "sentinel-2b",
+      "constellation": "sentinel-2",
+      "mgrs_tile": null,
+      "bbox": [
+        79.17569760978365,
+        8.95601895493372,
+        80.17948101123831,
+        9.950395679159014
+      ],
+      "self_href": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-2-l2a/items/S2B_MSIL2A_20260926T045659_N0513_R119_T44PLR_20260926T085532"
+    }
+  ]
 }
